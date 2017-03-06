@@ -1,10 +1,10 @@
 machine:
-    java:
-        version: oracle-8
+   java:
+     version: oracle-8
 
 test: 
-    override: 
-         - maven test
+   override: 
+      - maven test
 
 general:
   branches:
