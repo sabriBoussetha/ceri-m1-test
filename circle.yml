@@ -6,6 +6,8 @@ test:
     override: 
          - maven test
 
-deployment:
-  master:
-    branch: master
+general:
+  branches:
+    only:
+      - master
+
