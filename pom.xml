@@ -43,8 +43,8 @@
             </configuration>
         </plugin>
     </plugins>
-        <sourceDirectory>/src/test/java</sourceDirectory>
-        <testSourceDirectory>/src/test/java</testSourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
     </build>
 
     
