@@ -1,0 +1,11 @@
+machine:
+    java:
+        version: oracle-8
+
+test: 
+    override: 
+         - maven test
+
+deployment:
+  master:
+    branch: master
