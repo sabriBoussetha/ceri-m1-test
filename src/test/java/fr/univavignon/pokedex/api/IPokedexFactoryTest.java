@@ -8,11 +8,10 @@ import org.junit.Test;
 public class IPokedexFactoryTest {
 	
 	protected IPokedexFactory iPokedexFactory;
-	protected static IPokemonMetadataProvider iPokemonMetadataProvider;
+	
 	@Before
 	protected void setUp() {
-		setUpMock(this.iPokedexFactory);
-		IPokemonMetadataProviderTest.configureMoke(iPokemonMetadataProvider);
+		this.iPokedexFactory = setUpMock();
 	}
 	
 	@Test
@@ -21,8 +20,15 @@ public class IPokedexFactoryTest {
 		System.out.println("IPokedexFactoryTest.firstTest()");
 	}
 	
-	public static void setUpMock(IPokedexFactory iPokedexFactory){
-		iPokedexFactory = mock(IPokedexFactory.class);// TODO mock ou instance
+	
+	// On a décidé de faire une méthode de qui configue le mock de chaque class et la retourne
+	// comme ça on n'a pas à configurer les mocks chaque fois dans toutes les autres classes de tests
+	public static IPokedexFactory setUpMock(){
+		IPokedexFactory iPokedexFactory = mock(IPokedexFactory.class);// TODO mock ou instance
+		IPokemonMetadataProvider iPokemonMetadataProvider;
+		iPokemonMetadataProvider = IPokemonMetadataProviderTest.setUpMoke();
 		when(iPokedexFactory.createPokedex(iPokemonMetadataProvider, null)).thenReturn(null);
+		
+		return iPokedexFactory;
 	}
 }
