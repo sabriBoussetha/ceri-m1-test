@@ -7,7 +7,7 @@ public class PokedexFactoryTest extends IPokedexFactoryTest {
 	
 	@Before
 	protected void setUp() {
-		this.iPokedexFactory = null; // TODO récupérer la vrai instance ou le mock
+		this.iPokedexFactory = null; // TODO récupérer la vraie instance
 	}
 
 }
