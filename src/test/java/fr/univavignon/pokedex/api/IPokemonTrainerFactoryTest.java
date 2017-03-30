@@ -14,7 +14,7 @@ public class IPokemonTrainerFactoryTest {
 	@Before
 	protected void setUp() {
 		iPokemonTrainerFactory = mock(IPokemonTrainerFactory.class);
-		when(iPokemonTrainerFactory.createTrainer("default", "default team", IPokedexFactory.setUpMock())).thenAnswer(new Answer<PokemonTrainer> ()  {
+		when(iPokemonTrainerFactory.createTrainer("default", Team.INSTINCT, IPokedexFactoryTest.setUpMock())).thenAnswer(new Answer<PokemonTrainer> ()  {
 
 			@Override
 			public PokemonTrainer answer(InvocationOnMock invocation) throws Throwable {
