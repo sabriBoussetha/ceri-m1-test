@@ -56,6 +56,32 @@ public class IPokedexTest {
 		assertEquals(pIndex, 4);
 	}
 
+	@Test
+	public void sizeTest() {
+		int pIndex = iPokedex.size();
+		assertNotNull(pIndex);
+		assertEquals(pIndex, 14);
+	}
+
+	@Test
+	public void getPokemonMetadataTest() {
+		PokemonMetadata pokemonMetadata = new PokemonMetadata(4, "Four", 4, 4, 4);
+		PokemonMetadata mockPokemonMetaData;
+		try {
+			mockPokemonMetaData = iPokedex.getPokemonMetadata(4);
+
+			assertNotNull(mockPokemonMetaData);
+
+			assertEquals(mockPokemonMetaData.getDefense(), pokemonMetadata.getDefense());
+			assertEquals(mockPokemonMetaData.getAttack(), pokemonMetadata.getAttack());
+			assertEquals(mockPokemonMetaData.getIndex(), pokemonMetadata.getIndex());
+			assertEquals(mockPokemonMetaData.getName(), pokemonMetadata.getName());
+			assertEquals(mockPokemonMetaData.getStamina(), pokemonMetadata.getStamina());
+		} catch (PokedexException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static IPokedex setUpMock() {
 		IPokedex iPokedex = mock(IPokedex.class);
 
@@ -93,7 +119,7 @@ public class IPokedexTest {
 		} catch (PokedexException e) {
 			e.printStackTrace();
 		}
-	
+
 		return iPokedex;
 	}
 }
