@@ -7,6 +7,6 @@ public class PokemonMetadataProviderTest extends IPokemonMetadataProviderTest{
 
 	@Before
 	public void setUp(){
-		this.iPokemonMetadataProvider = null; //TODO new instance
+//		this.iPokemonMetadataProvider = null; //TODO new instance
 	}
 }

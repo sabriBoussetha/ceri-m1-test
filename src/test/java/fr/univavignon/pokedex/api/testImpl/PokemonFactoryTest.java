@@ -7,6 +7,6 @@ public class PokemonFactoryTest extends IPokemonFactoryTest{
 
 	@Before
 	public void setUp() {
-		this.iPokemonFactory = null; // TODO new instance
+//		this.iPokemonFactory = null; // TODO new instance
 	}
 }

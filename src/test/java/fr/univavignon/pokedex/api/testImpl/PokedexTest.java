@@ -7,6 +7,6 @@ public class PokedexTest extends IPokedexTest{
 
 	@Before
 	public void setUp(){
-		this.iPokedex = null; //TODO new instance
+//		this.iPokedex = null; //TODO new instance
 	}
 }
