@@ -5,6 +5,7 @@ machine:
 test: 
     override: 
         - mvn test
+        - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=* -DapiToken=*
 
 general:
     branches:
