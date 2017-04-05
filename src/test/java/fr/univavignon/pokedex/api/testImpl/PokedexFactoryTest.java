@@ -6,7 +6,7 @@ import fr.univavignon.pokedex.api.IPokedexFactoryTest;
 public class PokedexFactoryTest extends IPokedexFactoryTest {
 	
 	@Before
-	protected void setUp() {
+	public void setUp() {
 		this.iPokedexFactory = null; // TODO récupérer la vrai instance ou le mock
 	}
 

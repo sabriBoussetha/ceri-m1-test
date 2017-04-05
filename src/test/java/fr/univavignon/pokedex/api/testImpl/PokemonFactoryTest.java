@@ -1,12 +1,12 @@
 package fr.univavignon.pokedex.api.testImpl;
 
 import org.junit.Before;
-import fr.univavignon.pokedex.api.IPokedexFactoryTest;
+import fr.univavignon.pokedex.api.IPokemonFactoryTest;
 
-public class PokemonFactoryTest extends IPokedexFactoryTest{
+public class PokemonFactoryTest extends IPokemonFactoryTest{
 
 	@Before
-	protected void setUp(){
-		this.iPokedexFactory = null; //TODO new instance
+	public void setUp() {
+		this.iPokemonFactory = null; // TODO new instance
 	}
 }

@@ -6,7 +6,7 @@ import fr.univavignon.pokedex.api.IPokedexTest;
 public class PokedexTest extends IPokedexTest{
 
 	@Before
-	protected void setUp(){
+	public void setUp(){
 		this.iPokedex = null; //TODO new instance
 	}
 }
