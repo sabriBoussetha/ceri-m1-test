@@ -20,7 +20,8 @@ public class IPokedexFactoryTest {
 	@Test
 	public void createPokedexTest() {
 		Pokemon p = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
-		Pokemon mockP = iPokedexFactory.createPokedex(iPokemonMetadataProvider, iPokemonFactory).createPokemon(4, 4, 4, 4, 4);
+		IPokedex iPokedex = iPokedexFactory.createPokedex(iPokemonMetadataProvider, iPokemonFactory);
+		Pokemon mockP = iPokedex.createPokemon(4, 4, 4, 4, 4);
 
 		assertNotNull(mockP);
 		assertEquals(mockP.getIndex(), p.getIndex());
