@@ -18,6 +18,13 @@ public class IPokedexTest {
 	}
 
 	@Test
+	public void sizeTest() {
+		int pIndex = iPokedex.size();
+		assertNotNull(pIndex);
+		assertEquals(pIndex, 0);
+	}
+
+	@Test
 	public void createPokemonTest() throws PokedexException {
 		Pokemon p = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
 		Pokemon mockP = iPokedex.createPokemon(4, 4, 4, 4, 4);
@@ -54,13 +61,6 @@ public class IPokedexTest {
 		int pIndex = iPokedex.addPokemon(pokemon);
 		assertNotNull(pIndex);
 		assertEquals(pIndex, 4);
-	}
-
-	@Test
-	public void sizeTest() {
-		int pIndex = iPokedex.size();
-		assertNotNull(pIndex);
-		assertEquals(pIndex, 14);
 	}
 
 	@Test
