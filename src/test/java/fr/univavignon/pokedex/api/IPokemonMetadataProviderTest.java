@@ -19,7 +19,8 @@ public class IPokemonMetadataProviderTest {
 	@Test
 	public void getPokemonMetaData() {
 		try {
-			PokemonMetadata metaData = new PokemonMetadata(1, "PokeName", 50, 50, 50);
+			System.out.println("IPokemonMetadataProviderTest.getPokemonMetaData()");
+			PokemonMetadata metaData = new PokemonMetadata(1, "bulbasaur", 49, 49, 75);
 			PokemonMetadata mockMetaData = iPokemonMetadataProvider.getPokemonMetadata(1);
 			
 			assertEquals(mockMetaData.getAttack(), metaData.getAttack());

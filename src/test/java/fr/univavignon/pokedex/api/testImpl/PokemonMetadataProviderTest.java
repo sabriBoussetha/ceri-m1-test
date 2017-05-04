@@ -1,12 +1,15 @@
 package fr.univavignon.pokedex.api.testImpl;
 
 import org.junit.Before;
+
 import fr.univavignon.pokedex.api.IPokemonMetadataProviderTest;
+import fr.univavignon.pokedex.api.PokemonMetadataProvider;
 
 public class PokemonMetadataProviderTest extends IPokemonMetadataProviderTest{
 
 	@Before
 	public void setUp(){
-//		this.iPokemonMetadataProvider = null; //TODO new instance
+		System.out.println("PokemonMetadataProviderTest.setUp()");
+		this.iPokemonMetadataProvider = new PokemonMetadataProvider();
 	}
 }
