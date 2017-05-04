@@ -1,11 +1,17 @@
 package fr.univavignon.pokedex.api.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+
+import com.google.gson.Gson;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 import fr.univavignon.pokedex.api.IPokemonFactory;
 import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
@@ -17,7 +23,7 @@ public class PokemonFactory implements IPokemonFactory{
 	
 	IPokemonMetadataProvider pokemonMetadataProvider;
 	
-	WebDriver webDrive;
+	Wait<WebDriver> wait;
 
 	@Override
 	public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
@@ -25,10 +31,11 @@ public class PokemonFactory implements IPokemonFactory{
 		try {
 			PokemonMetadata pokemonMetadata = pokemonMetadataProvider.getPokemonMetadata(index);
 			
-			double iv = ivCalculator(pokemonMetadata.getName(),cp,hp,dust,candy);
+			List<String> ivStamina = ivCalculator(pokemonMetadata.getName(),cp,hp,dust);
 			
 			pokemon = new Pokemon(index, pokemonMetadata.getName(), pokemonMetadata.getAttack(), 
-											pokemonMetadata.getDefense(), pokemonMetadata.getStamina(), cp, hp, dust, candy, iv);
+											pokemonMetadata.getDefense(), Integer.parseInt(ivStamina.get(0)), cp, hp, dust, candy,
+											Double.parseDouble(ivStamina.get(1)));
 		} catch (PokedexException e) {
 			e.printStackTrace();
 		}
@@ -36,8 +43,12 @@ public class PokemonFactory implements IPokemonFactory{
 		return pokemon;
 	}
 	
-	private double ivCalculator(String name, int cp, int hp, int dust, int candy){
-		webDrive.get("https://pokeassistant.com/main/ivcalculator?locale=en");
+	public List ivCalculator(String name, int cp, int hp, int dust){
+		ChromeDriverManager.getInstance().setup();
+
+		WebDriver webDrive = new ChromeDriver();
+		
+		webDrive.navigate().to("https://pokeassistant.com/main/ivcalculator?locale=en");
 		
 		webDrive.findElement(By.id("search_pokemon_name")).sendKeys(name);
 		
@@ -54,12 +65,20 @@ public class PokemonFactory implements IPokemonFactory{
 		WebElement tableComb = webDrive.findElement(By.id("possiblecombis"));
 		
 		List<WebElement> trCollection = tableComb.findElements(By.xpath("id('possiblecombis')/tbody/tr"));
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	
+		List<String> result = new ArrayList<String>();
+		
+		result.add(trCollection.get(0).findElements(By.xpath("td")).get(3).getText());
+		
+		result.add(trCollection.get(0).findElements(By.xpath("td")).get(4).getText());
 
-		double stamina = Double.parseDouble(trCollection.get(0).findElements(By.xpath("td")).get(3).toString());
-		
-		double iv = Double.parseDouble(trCollection.get(0).findElements(By.xpath("td")).get(4).toString());
-		
-		return iv;
+		return result;
 	}
 
 }
