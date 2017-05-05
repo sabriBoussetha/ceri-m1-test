@@ -20,31 +20,31 @@ public class IPokemonFactoryTest {
 
 	}
 
-	@Ignore
+	
 	@Test
 	public void createPokemonTest() {
-		Pokemon p = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
-		Pokemon mockP = iPokemonFactory.createPokemon(4, 4, 4, 4, 4);
+		Pokemon pokemon1 = new Pokemon(93, "Gengar", 204, 156, 10, 1459, 77, 2500, 100, 84.4);
+		Pokemon pokemon2 = iPokemonFactory.createPokemon(93, 1459, 77, 2500, 100);
 		
-		assertNotNull(mockP);
-		assertEquals(mockP.getIndex(), p.getIndex());
-		assertEquals(mockP.getName(), p.getName());
-		assertEquals(mockP.getAttack(), p.getAttack());
-		assertEquals(mockP.getCandy(), p.getCandy());
-		assertEquals(mockP.getCp(), p.getCp());
-		assertEquals(mockP.getDefense(), p.getDefense());
-		assertEquals(mockP.getDust(), p.getDust());
-		assertEquals(mockP.getHp(), p.getHp());
-		assertEquals(mockP.getStamina(), p.getStamina());
+		assertNotNull(pokemon2);
+		assertEquals(pokemon2.getIndex(), pokemon1.getIndex());
+		assertEquals(pokemon2.getName(), pokemon1.getName());
+		assertEquals(pokemon2.getAttack(), pokemon1.getAttack());
+		assertEquals(pokemon2.getCandy(), pokemon1.getCandy());
+		assertEquals(pokemon2.getCp(), pokemon1.getCp());
+		assertEquals(pokemon2.getDefense(), pokemon1.getDefense());
+		assertEquals(pokemon2.getDust(), pokemon1.getDust());
+		assertEquals(pokemon2.getHp(), pokemon1.getHp());
+		assertEquals(pokemon2.getStamina(), pokemon1.getStamina());
 	}
 
 	public static IPokemonFactory setUpMock() {
 		IPokemonFactory iPokemonFactory = mock(IPokemonFactory.class);
-		when(iPokemonFactory.createPokemon(4, 4, 4, 4, 4)).thenAnswer(new Answer<Pokemon>() {
+		when(iPokemonFactory.createPokemon(93, 1459, 77, 2500, 100)).thenAnswer(new Answer<Pokemon>() {
 
 			@Override
 			public Pokemon answer(InvocationOnMock invocation) throws Throwable {
-				return new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
+				return new Pokemon(93, "Gengar", 204, 156, 10, 1459, 77, 2500, 100, 84.4);
 			}
 		});
 		return iPokemonFactory;

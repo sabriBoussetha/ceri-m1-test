@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
-import com.google.gson.Gson;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 import fr.univavignon.pokedex.api.IPokemonFactory;
@@ -21,22 +20,35 @@ import fr.univavignon.pokedex.api.PokemonMetadata;
 
 public class PokemonFactory implements IPokemonFactory{
 	
+	/**
+	 * 
+	 */
 	IPokemonMetadataProvider pokemonMetadataProvider;
 	
+	/**
+	 * 
+	 */
 	Wait<WebDriver> wait;
+	
+	public PokemonFactory() {
+		pokemonMetadataProvider = new PokemonMetadataProvider();
+	}
 
+	
+	/**
+	 * 
+	 */
 	@Override
 	public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
 		Pokemon pokemon = null;
 		try {
-			pokemonMetadataProvider = new PokemonMetadataProvider();
 			PokemonMetadata pokemonMetadata = pokemonMetadataProvider.getPokemonMetadata(index);
 			
 			List<String> ivStamina = ivCalculator(pokemonMetadata.getName(),cp,hp,dust);
-			
+
 			pokemon = new Pokemon(index, pokemonMetadata.getName(), pokemonMetadata.getAttack(), 
 											pokemonMetadata.getDefense(), Integer.parseInt(ivStamina.get(0)), cp, hp, dust, candy,
-											Double.parseDouble(ivStamina.get(1)));
+											Double.parseDouble(ivStamina.get(1).substring(0, ivStamina.get(1).length()-1)));
 		} catch (PokedexException e) {
 			e.printStackTrace();
 		}
@@ -44,6 +56,14 @@ public class PokemonFactory implements IPokemonFactory{
 		return pokemon;
 	}
 	
+	/**
+	 * 
+	 * @param name
+	 * @param cp
+	 * @param hp
+	 * @param dust
+	 * @return
+	 */
 	public List ivCalculator(String name, int cp, int hp, int dust){
 		ChromeDriverManager.getInstance().setup();
 
@@ -78,6 +98,8 @@ public class PokemonFactory implements IPokemonFactory{
 		result.add(trCollection.get(0).findElements(By.xpath("td")).get(3).getText());
 		
 		result.add(trCollection.get(0).findElements(By.xpath("td")).get(4).getText());
+		
+		webDrive.quit();
 
 		return result;
 	}
