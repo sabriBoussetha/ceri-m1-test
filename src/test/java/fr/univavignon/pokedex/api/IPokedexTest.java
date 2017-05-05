@@ -23,6 +23,25 @@ public class IPokedexTest {
 		assertNotNull(pIndex);
 		assertEquals(pIndex, 0);
 	}
+	
+	@Test
+	public void getPokemonMetadataTest() {
+		PokemonMetadata pokemonMetadata = new PokemonMetadata(1, "Four", 4, 4, 4);
+		PokemonMetadata mockPokemonMetaData;
+		try {
+			mockPokemonMetaData = iPokedex.getPokemonMetadata(1);
+
+			assertNotNull(mockPokemonMetaData);
+
+			assertEquals(mockPokemonMetaData.getDefense(), pokemonMetadata.getDefense());
+			assertEquals(mockPokemonMetaData.getAttack(), pokemonMetadata.getAttack());
+			assertEquals(mockPokemonMetaData.getIndex(), pokemonMetadata.getIndex());
+			assertEquals(mockPokemonMetaData.getName(), pokemonMetadata.getName());
+			assertEquals(mockPokemonMetaData.getStamina(), pokemonMetadata.getStamina());
+		} catch (PokedexException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Test
 	public void createPokemonTest() throws PokedexException {
@@ -58,28 +77,10 @@ public class IPokedexTest {
 
 	@Test
 	public void addPokemonTest() {
+		pokemon = new Pokemon(1, "Bulbasaur", 126, 126, 90, 40, 50, 60, 70, 55);
 		int pIndex = iPokedex.addPokemon(pokemon);
 		assertNotNull(pIndex);
-		assertEquals(pIndex, 4);
-	}
-
-	@Test
-	public void getPokemonMetadataTest() {
-		PokemonMetadata pokemonMetadata = new PokemonMetadata(4, "Four", 4, 4, 4);
-		PokemonMetadata mockPokemonMetaData;
-		try {
-			mockPokemonMetaData = iPokedex.getPokemonMetadata(4);
-
-			assertNotNull(mockPokemonMetaData);
-
-			assertEquals(mockPokemonMetaData.getDefense(), pokemonMetadata.getDefense());
-			assertEquals(mockPokemonMetaData.getAttack(), pokemonMetadata.getAttack());
-			assertEquals(mockPokemonMetaData.getIndex(), pokemonMetadata.getIndex());
-			assertEquals(mockPokemonMetaData.getName(), pokemonMetadata.getName());
-			assertEquals(mockPokemonMetaData.getStamina(), pokemonMetadata.getStamina());
-		} catch (PokedexException e) {
-			e.printStackTrace();
-		}
+		assertEquals(pIndex, 1);
 	}
 
 	public static IPokedex setUpMock() {
