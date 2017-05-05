@@ -1,8 +1,12 @@
 package fr.univavignon.pokedex.api;
 
 import static org.mockito.Mockito.*;
+
+import java.util.List;
+
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -21,48 +25,48 @@ public class IPokedexTest {
 	public void sizeTest() {
 		int pIndex = iPokedex.size();
 		assertNotNull(pIndex);
-		assertEquals(pIndex, 0);
+		assertEquals(pIndex, 3);
 	}
 	
 	@Test
 	public void getPokemonMetadataTest() {
-		PokemonMetadata pokemonMetadata = new PokemonMetadata(1, "Four", 4, 4, 4);
+		PokemonMetadata pokemonMetadata = new PokemonMetadata(4, "Charmeleon", 160, 140, 116);
 		PokemonMetadata mockPokemonMetaData;
 		try {
-			mockPokemonMetaData = iPokedex.getPokemonMetadata(1);
-
+			mockPokemonMetaData = iPokedex.getPokemonMetadata(4);
 			assertNotNull(mockPokemonMetaData);
 
+			assertEquals(mockPokemonMetaData.getName(), pokemonMetadata.getName());
 			assertEquals(mockPokemonMetaData.getDefense(), pokemonMetadata.getDefense());
 			assertEquals(mockPokemonMetaData.getAttack(), pokemonMetadata.getAttack());
 			assertEquals(mockPokemonMetaData.getIndex(), pokemonMetadata.getIndex());
-			assertEquals(mockPokemonMetaData.getName(), pokemonMetadata.getName());
 			assertEquals(mockPokemonMetaData.getStamina(), pokemonMetadata.getStamina());
 		} catch (PokedexException e) {
 			e.printStackTrace();
 		}
 	}
 
+	@Ignore
 	@Test
 	public void createPokemonTest() throws PokedexException {
-		Pokemon p = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
-		Pokemon mockP = iPokedex.createPokemon(4, 4, 4, 4, 4);
-		assertNotNull(mockP);
-		assertEquals(mockP.getIndex(), p.getIndex());
-		assertEquals(mockP.getName(), p.getName());
-		assertEquals(mockP.getAttack(), p.getAttack());
-		assertEquals(mockP.getCandy(), p.getCandy());
-		assertEquals(mockP.getCp(), p.getCp());
-		assertEquals(mockP.getDefense(), p.getDefense());
-		assertEquals(mockP.getDust(), p.getDust());
-		assertEquals(mockP.getHp(), p.getHp());
-		assertEquals(mockP.getStamina(), p.getStamina());
+		Pokemon pokemon1 = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
+		Pokemon pokemon2 = iPokedex.createPokemon(4, 4, 4, 4, 4);
+		assertNotNull(pokemon2);
+		assertEquals(pokemon2.getIndex(), pokemon1.getIndex());
+		assertEquals(pokemon2.getName(), pokemon1.getName());
+		assertEquals(pokemon2.getAttack(), pokemon1.getAttack());
+		assertEquals(pokemon2.getCandy(), pokemon1.getCandy());
+		assertEquals(pokemon2.getCp(), pokemon1.getCp());
+		assertEquals(pokemon2.getDefense(), pokemon1.getDefense());
+		assertEquals(pokemon2.getDust(), pokemon1.getDust());
+		assertEquals(pokemon2.getHp(), pokemon1.getHp());
+		assertEquals(pokemon2.getStamina(), pokemon1.getStamina());
 	}
 
 	@Test
 	public void getPokemonTest() throws PokedexException {
-		Pokemon p = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
-		Pokemon mockP = iPokedex.getPokemon(4);
+		Pokemon p = new Pokemon(1, "Bulbasaur", 126, 126, 90, 40, 50, 60, 70, 55);
+		Pokemon mockP = iPokedex.getPokemon(1);
 		assertNotNull(mockP);
 		assertEquals(mockP.getIndex(), p.getIndex());
 		assertEquals(mockP.getName(), p.getName());
@@ -77,10 +81,17 @@ public class IPokedexTest {
 
 	@Test
 	public void addPokemonTest() {
-		pokemon = new Pokemon(1, "Bulbasaur", 126, 126, 90, 40, 50, 60, 70, 55);
+		pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 		int pIndex = iPokedex.addPokemon(pokemon);
 		assertNotNull(pIndex);
-		assertEquals(pIndex, 1);
+		assertEquals(pIndex,4);
+	}
+	
+	@Test
+	public void getAllPokemons(){
+		List<Pokemon> pokemons = iPokedex.getPokemons();
+		
+		assertEquals(3, pokemons.size());
 	}
 
 	public static IPokedex setUpMock() {

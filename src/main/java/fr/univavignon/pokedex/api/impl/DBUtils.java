@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.univavignon.pokedex.api.Pokemon;
 
@@ -82,11 +84,32 @@ public class DBUtils {
 		try (Connection conn = DriverManager.getConnection(URL);
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
-			return new Pokemon(rs.getInt("id"), rs.getString("name"), rs.getInt("attack"), rs.getInt("defense"), rs.getInt("stamina"), rs.getInt("cp"), rs.getInt("hd"), rs.getInt("dust"), rs.getInt("candy"), rs.getInt("iv"));
+			return new Pokemon(rs.getInt("id"), rs.getString("name"), rs.getInt("attack"), rs.getInt("defense"),
+					rs.getInt("stamina"), rs.getInt("cp"), rs.getInt("hd"), rs.getInt("dust"), rs.getInt("candy"),
+					rs.getInt("iv"));
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return null;
+	}
+
+	public static List<Pokemon> getAllPokemons() {
+		ArrayList<Pokemon> pokemons = new ArrayList<>();
+
+		String sql = "SELECT * FROM pokemons";
+		int res = 0;
+		try (Connection conn = DriverManager.getConnection(URL);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+			while (rs.next()) {
+				System.out.println(rs.getString("name"));
+				pokemons.add(getRow(rs.getInt("id")));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return pokemons;
 	}
 
 	public static boolean rowExist(int index) {

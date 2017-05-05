@@ -3,6 +3,7 @@ package fr.univavignon.pokedex.api.impl;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -75,12 +76,13 @@ public class Pokedex implements IPokedex {
 
 	@Override
 	public Pokemon getPokemon(int id) throws PokedexException {
-		return null;
+		return DBUtils.getRow(id);
 	}
 
 	@Override
 	public List<Pokemon> getPokemons() {
-		return null;
+		List<Pokemon> pokemons = DBUtils.getAllPokemons();
+		return pokemons.size() > 0 ? pokemons : null;
 	}
 
 	@Override

@@ -29,6 +29,7 @@ public class PokemonFactory implements IPokemonFactory{
 	public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
 		Pokemon pokemon = null;
 		try {
+			pokemonMetadataProvider = new PokemonMetadataProvider();
 			PokemonMetadata pokemonMetadata = pokemonMetadataProvider.getPokemonMetadata(index);
 			
 			List<String> ivStamina = ivCalculator(pokemonMetadata.getName(),cp,hp,dust);
