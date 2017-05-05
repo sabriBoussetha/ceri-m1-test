@@ -91,7 +91,7 @@ public class IPokedexTest {
 	public void getAllPokemons(){
 		List<Pokemon> pokemons = iPokedex.getPokemons();
 		
-		assertEquals(0, pokemons.size());
+		assertEquals(3, pokemons.size());
 	}
 
 	public static IPokedex setUpMock() {
@@ -118,7 +118,7 @@ public class IPokedexTest {
 				}
 			});
 
-			when(iPokedex.size()).thenReturn(14);
+			when(iPokedex.size()).thenReturn(3);
 
 			when(iPokedex.getPokemonMetadata(4)).thenAnswer(new Answer<PokemonMetadata>() {
 
