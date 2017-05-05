@@ -97,7 +97,6 @@ public class DBUtils {
 		ArrayList<Pokemon> pokemons = new ArrayList<>();
 
 		String sql = "SELECT * FROM pokemons";
-		int res = 0;
 		try (Connection conn = DriverManager.getConnection(URL);
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
