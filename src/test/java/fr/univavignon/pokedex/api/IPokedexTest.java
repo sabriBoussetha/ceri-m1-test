@@ -98,7 +98,7 @@ public class IPokedexTest {
 		IPokedex iPokedex = mock(IPokedex.class);
 
 		try {
-			pokemon = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
+			pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 			iPokedex = mock(IPokedex.class);
 			when(iPokedex.getPokemon(4)).thenAnswer(new Answer<Pokemon>() {
 
@@ -110,7 +110,7 @@ public class IPokedexTest {
 
 			when(iPokedex.addPokemon(pokemon)).thenReturn(4);
 
-			when(iPokedex.createPokemon(4, 4, 4, 4, 4)).thenAnswer(new Answer<Pokemon>() {
+			when(iPokedex.createPokemon(4, 54, 15, 95, 70)).thenAnswer(new Answer<Pokemon>() {
 
 				@Override
 				public Pokemon answer(InvocationOnMock invocation) throws Throwable {
@@ -124,7 +124,7 @@ public class IPokedexTest {
 
 				@Override
 				public PokemonMetadata answer(InvocationOnMock invocation) throws Throwable {
-					return new PokemonMetadata(4, "Four", 4, 4, 4);
+					return new PokemonMetadata(4, "Charmeleon", 160, 140, 116);
 				}
 			});
 

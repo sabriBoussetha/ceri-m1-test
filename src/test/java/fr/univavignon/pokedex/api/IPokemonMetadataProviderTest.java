@@ -20,8 +20,8 @@ public class IPokemonMetadataProviderTest {
 	public void getPokemonMetaData() {
 		try {
 			System.out.println("IPokemonMetadataProviderTest.getPokemonMetaData()");
-			PokemonMetadata metaData = new PokemonMetadata(0, "Bulbasaur", 126, 126, 90);
-			PokemonMetadata mockMetaData = iPokemonMetadataProvider.getPokemonMetadata(0);
+			PokemonMetadata metaData = new PokemonMetadata(1, "Bulbasaur", 126, 126, 90);
+			PokemonMetadata mockMetaData = iPokemonMetadataProvider.getPokemonMetadata(1);
 			
 			assertEquals(mockMetaData.getAttack(), metaData.getAttack());
 			assertEquals(mockMetaData.getDefense(), metaData.getDefense());
@@ -40,7 +40,7 @@ public class IPokemonMetadataProviderTest {
 
 				@Override
 				public PokemonMetadata answer(InvocationOnMock invocation) throws Throwable {
-					return new PokemonMetadata(/*(int) invocation.getArguments()[0]*/ 1, "PokeName", 50, 50, 50);
+					return new PokemonMetadata(1, "Bulbasaur", 126, 126, 90);
 				}
 
 			});
