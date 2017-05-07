@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class IPokedexFactoryTest {
 
 	protected IPokedexFactory iPokedexFactory;
@@ -18,12 +19,11 @@ public class IPokedexFactoryTest {
 		this.iPokedexFactory = setUpMock();
 	}
 
-	@Ignore
 	@Test
 	public void createPokedexTest() {
-		Pokemon p = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
+		Pokemon p = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 		IPokedex iPokedex = iPokedexFactory.createPokedex(iPokemonMetadataProvider, iPokemonFactory);
-		Pokemon mockP = iPokedex.createPokemon(4, 4, 4, 4, 4);
+		Pokemon mockP = iPokedex.createPokemon(4, 54, 15, 95, 70);
 
 		assertNotNull(mockP);
 		assertEquals(mockP.getIndex(), p.getIndex());
