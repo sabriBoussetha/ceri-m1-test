@@ -1,12 +1,10 @@
 machine:
     java:
         version: oraclejdk8
-		
 test: 
     override: 
         - mvn test
         - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$projectToken -DapiToken=$apiToken
-
 general:
     branches:
         only:
