@@ -26,7 +26,7 @@ public class IPokedexTest {
 	public void sizeTest() {
 		int pIndex = iPokedex.size();
 		assertNotNull(pIndex);
-		assertEquals(2, pIndex);
+		assertEquals(3, pIndex);
 	}
 
 	@Test
@@ -120,7 +120,7 @@ public class IPokedexTest {
 				}
 			});
 
-			when(iPokedex.size()).thenReturn(2);
+			when(iPokedex.size()).thenReturn(3);
 
 			when(iPokedex.getPokemonMetadata(4)).thenAnswer(new Answer<PokemonMetadata>() {
 
