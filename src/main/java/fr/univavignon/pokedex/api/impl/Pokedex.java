@@ -67,7 +67,6 @@ public class Pokedex implements IPokedex {
 
 	@Override
 	public int addPokemon(Pokemon pokemon) {
-		System.out.println("Pokedex.addPokemon()");
 		DBUtils.addPokemonToDb(pokemon);
 		return pokemon.getIndex();
 	}
