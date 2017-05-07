@@ -49,8 +49,8 @@ public class IPokedexTest {
 	@Ignore
 	@Test
 	public void createPokemonTest() throws PokedexException {
-		Pokemon pokemon1 = new Pokemon(4, "Four", 4, 4, 4, 4, 4, 4, 4, 4);
-		Pokemon pokemon2 = iPokedex.createPokemon(4, 4, 4, 4, 4);
+		Pokemon pokemon1 = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
+		Pokemon pokemon2 = iPokedex.createPokemon(4, 54, 15, 95, 70);
 		assertNotNull(pokemon2);
 		assertEquals(pokemon2.getIndex(), pokemon1.getIndex());
 		assertEquals(pokemon2.getName(), pokemon1.getName());
@@ -84,7 +84,7 @@ public class IPokedexTest {
 		pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 		int pIndex = iPokedex.addPokemon(pokemon);
 		assertNotNull(pIndex);
-		assertEquals(4,pIndex);
+		assertEquals(pIndex,4);
 	}
 	
 	@Test
@@ -100,14 +100,15 @@ public class IPokedexTest {
 		try {
 			pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 			iPokedex = mock(IPokedex.class);
-			when(iPokedex.getPokemon(4)).thenAnswer(new Answer<Pokemon>() {
+			when(iPokedex.getPokemon(1)).thenAnswer(new Answer<Pokemon>() {
 
 				@Override
 				public Pokemon answer(InvocationOnMock invocation) throws Throwable {
-					return pokemon;
+					return new Pokemon(1, "Bulbasaur", 126, 126, 90, 40, 50, 60, 70, 55);
 				}
 			});
 
+			pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 			when(iPokedex.addPokemon(pokemon)).thenReturn(4);
 
 			when(iPokedex.createPokemon(4, 54, 15, 95, 70)).thenAnswer(new Answer<Pokemon>() {
