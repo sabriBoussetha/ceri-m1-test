@@ -1,11 +1,12 @@
 package fr.univavignon.pokedex.api;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
 import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Test;
 
 @Ignore
 public class IPokedexFactoryTest {
@@ -19,7 +20,6 @@ public class IPokedexFactoryTest {
 		this.iPokedexFactory = setUpMock();
 	}
 
-	@Test
 	public void createPokedexTest() {
 		Pokemon p = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 		IPokedex iPokedex = iPokedexFactory.createPokedex(iPokemonMetadataProvider, iPokemonFactory);
@@ -37,10 +37,15 @@ public class IPokedexFactoryTest {
 		assertEquals(mockP.getStamina(), p.getStamina());
 	}
 
-	// On a décidé de faire une méthode de qui configue le mock de chaque class et la retourne
-	// comme ça on n'a pas à configurer les mocks chaque fois dans toutes les autres classes de tests
+	// On a décidé de faire une méthode de qui configue le mock de chaque class
+	// et la retourne
+	// comme ça on n'a pas à configurer les mocks chaque fois dans toutes les
+	// autres classes de tests
 	public static IPokedexFactory setUpMock() {
-		IPokedexFactory iPokedexFactory = mock(IPokedexFactory.class);// TODO mock ou instance
+		IPokedexFactory iPokedexFactory = mock(IPokedexFactory.class);// TODO
+																		// mock
+																		// ou
+																		// instance
 		iPokemonMetadataProvider = IPokemonMetadataProviderTest.setUpMoke();
 		iPokemonFactory = IPokemonFactoryTest.setUpMock();
 		IPokedex ipokedex = IPokedexTest.setUpMock();
