@@ -49,17 +49,19 @@ public class DBUtils {
 		try (Connection conn = DriverManager.getConnection(URL); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			// pstmt.setString(1, name);
 			// pstmt.setDouble(2, capacity);
-			pstmt.setInt(1, pokemon.getIndex());
-			pstmt.setString(2, pokemon.getName());
-			pstmt.setInt(3, pokemon.getAttack());
-			pstmt.setInt(4, pokemon.getDefense());
-			pstmt.setInt(5, pokemon.getStamina());
-			pstmt.setInt(6, pokemon.getCp());
-			pstmt.setInt(7, pokemon.getHp());
-			pstmt.setInt(8, pokemon.getDust());
-			pstmt.setInt(9, pokemon.getCandy());
-			pstmt.setDouble(10, pokemon.getIv());
-			pstmt.executeUpdate();
+			if (pokemon != null) {
+				pstmt.setInt(1, pokemon.getIndex());
+				pstmt.setString(2, pokemon.getName());
+				pstmt.setInt(3, pokemon.getAttack());
+				pstmt.setInt(4, pokemon.getDefense());
+				pstmt.setInt(5, pokemon.getStamina());
+				pstmt.setInt(6, pokemon.getCp());
+				pstmt.setInt(7, pokemon.getHp());
+				pstmt.setInt(8, pokemon.getDust());
+				pstmt.setInt(9, pokemon.getCandy());
+				pstmt.setDouble(10, pokemon.getIv());
+				pstmt.executeUpdate();
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
