@@ -26,7 +26,7 @@ public class IPokedexTest {
 	public void sizeTest() {
 		int pIndex = iPokedex.size();
 		assertNotNull(pIndex);
-		assertEquals(pIndex, 3);
+		assertEquals(pIndex, 2);
 	}
 	
 	@Test
@@ -91,7 +91,7 @@ public class IPokedexTest {
 	public void getAllPokemons(){
 		List<Pokemon> pokemons = iPokedex.getPokemons();
 		
-		assertEquals(3, pokemons.size());
+		assertEquals(2, pokemons.size());
 	}
 
 	public static IPokedex setUpMock() {
