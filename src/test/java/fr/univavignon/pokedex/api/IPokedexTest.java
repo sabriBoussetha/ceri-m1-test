@@ -84,7 +84,7 @@ public class IPokedexTest {
 		pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 		int pIndex = iPokedex.addPokemon(pokemon);
 		assertNotNull(pIndex);
-		assertEquals(pIndex,4);
+		assertEquals(4,pIndex);
 	}
 	
 	@Test
