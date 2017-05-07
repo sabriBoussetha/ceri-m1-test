@@ -14,8 +14,8 @@ general:
             
 dependencies:
 	override:
-		- curl -L -o google-chrome.deb https://s3.amazonaws.com/circle-downloads/google-chrome-stable_current_amd64_58.0.3029.96-1.deb 
-		- sudo dpkg -i google-chrome.deb 
-		- sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome 
+		- curl -L -o google-chrome.deb https://s3.amazonaws.com/circle-downloads/google-chrome-stable_current_amd64.deb
+		- sudo dpkg -i google-chrome.deb
+		- sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
 		- rm google-chrome.deb
 
