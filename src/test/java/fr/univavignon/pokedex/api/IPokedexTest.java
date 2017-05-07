@@ -2,6 +2,7 @@ package fr.univavignon.pokedex.api;
 
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -81,10 +82,9 @@ public class IPokedexTest {
 
 	@Test
 	public void addPokemonTest() {
-		pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
 		int pIndex = iPokedex.addPokemon(pokemon);
 		assertNotNull(pIndex);
-		assertEquals(pIndex,4);
+		assertEquals(4, pIndex);
 	}
 	
 	@Test
@@ -96,10 +96,7 @@ public class IPokedexTest {
 
 	public static IPokedex setUpMock() {
 		IPokedex iPokedex = mock(IPokedex.class);
-
 		try {
-			pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
-			iPokedex = mock(IPokedex.class);
 			when(iPokedex.getPokemon(1)).thenAnswer(new Answer<Pokemon>() {
 
 				@Override
@@ -109,8 +106,14 @@ public class IPokedexTest {
 			});
 
 			pokemon = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
-			when(iPokedex.addPokemon(pokemon)).thenReturn(4);
+			when(iPokedex.addPokemon(pokemon)).thenAnswer(new Answer<Integer>() {
 
+				@Override
+				public Integer answer(InvocationOnMock invocation) throws Throwable {
+					System.out.println("IPokedexTest.setUpMock().new Answer() {...}.answer()");
+					return 4;
+				}
+			});
 			when(iPokedex.createPokemon(4, 54, 15, 95, 70)).thenAnswer(new Answer<Pokemon>() {
 
 				@Override
@@ -126,6 +129,23 @@ public class IPokedexTest {
 				@Override
 				public PokemonMetadata answer(InvocationOnMock invocation) throws Throwable {
 					return new PokemonMetadata(4, "Charmeleon", 160, 140, 116);
+				}
+			});
+			
+			when(iPokedex.getPokemons()).thenAnswer(new Answer<List<Pokemon>>() {
+
+				@Override
+				public List<Pokemon> answer(InvocationOnMock invocation) throws Throwable {
+					Pokemon pokemon1 = new Pokemon(1, "Bulbasaur", 126, 126, 90, 40, 50, 60, 70, 55);
+					Pokemon pokemon2 = new Pokemon(4, "Charmeleon", 160, 140, 116, 54, 15, 95, 70, 55);
+					Pokemon pokemon3 = new Pokemon(2, "Ivysaur", 156, 158, 120, 54, 95, 74, 194, 45);
+					
+					List<Pokemon> list = new ArrayList<>();
+					list.add(pokemon1);
+					list.add(pokemon2);
+					list.add(pokemon3);
+					
+					return list;
 				}
 			});
 
