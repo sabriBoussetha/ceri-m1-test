@@ -4,6 +4,9 @@ machine:
 test: 
  override: 
   - mvn clean jacoco:prepare-agent test jacoco:report
+  - echo $projectToken
+  - echo $apiToken
+  - echo ${apiToken}
   - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$projectToken -DapiToken=$apiToken
 general:
  branches:
