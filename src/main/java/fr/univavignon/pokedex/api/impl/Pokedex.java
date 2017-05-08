@@ -11,11 +11,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import fr.univavignon.pokedex.api.IPokedex;
+import fr.univavignon.pokedex.api.IPokemonFactory;
+import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
 import fr.univavignon.pokedex.api.PokedexException;
 import fr.univavignon.pokedex.api.Pokemon;
 import fr.univavignon.pokedex.api.PokemonMetadata;
 
 public class Pokedex implements IPokedex {
+	
+	private IPokemonMetadataProvider iPokemonMetadataProvider;
+	private IPokemonFactory iPokemonFactory;
 
 	@Override
 	public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
@@ -25,13 +30,11 @@ public class Pokedex implements IPokedex {
 		int stamina = 0;
 		String name = null;
 		if (DBUtils.rowExist(index)) {
-			System.out.println("Pokedex.getPokemonMetadata() - exist");
 			Pokemon pokemon = DBUtils.getRow(index);
 			System.out.println(pokemon.getName());
 			
 			return new PokemonMetadata(pokemon.getIndex(), pokemon.getName(), pokemon.getAttack(), pokemon.getDefense(), pokemon.getStamina());
 		} else {
-			System.out.println("Pokedex.getPokemonMetadata() - not exist");
 			try {
 				URL url = new URL(
 						"https://raw.githubusercontent.com/PokemonGo-Enhanced/node-pokemongo-data/master/data.json");
