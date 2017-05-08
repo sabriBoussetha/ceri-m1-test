@@ -5,11 +5,13 @@ test:
  override: 
   - mvn clean
   - mvn jacoco:prepare-agent test jacoco:report
-  - mvn -X com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$projectToken -DapiToken=$apiToken
+  - mvn -X com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=build/reports/jacoco/jacocoTestReport.xml -DprojectToken=$projectToken -DapiToken=$apiToken
 general:
  branches:
   only:
    - master
+ artifacts:
+  - "build/reports/jacoco"
 dependencies:
  override:
   - curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
