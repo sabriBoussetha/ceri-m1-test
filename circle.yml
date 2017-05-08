@@ -7,7 +7,7 @@ test:
   - echo $projectToken
   - echo $apiToken
   - echo ${apiToken}
-  - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$projectToken -DapiToken=$apiToken
+  - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=572cae56e66148129d3f2c5b96cc7880 -DapiToken=vOQMYcU0kRepzVrQVBxS
 general:
  branches:
   only:
