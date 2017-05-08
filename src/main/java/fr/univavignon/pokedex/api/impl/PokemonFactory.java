@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 
 import fr.univavignon.pokedex.api.IPokemonFactory;
 import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
@@ -22,12 +21,7 @@ public class PokemonFactory implements IPokemonFactory {
 	/**
 	 * 
 	 */
-	IPokemonMetadataProvider pokemonMetadataProvider;
-
-	/**
-	 * 
-	 */
-	Wait<WebDriver> wait;
+	private IPokemonMetadataProvider pokemonMetadataProvider;
 
 	public PokemonFactory() {
 		pokemonMetadataProvider = new PokemonMetadataProvider();
