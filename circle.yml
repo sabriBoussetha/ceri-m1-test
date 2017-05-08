@@ -1,19 +1,16 @@
 machine:
- java:
-  version: oraclejdk8
+    java:
+        version: oraclejdk8
 test: 
- override: 
-  - mvn clean
-  - mkdir -p build/reports/jacoco/
-  - touch build/reports/jacoco/jacocoTestReport.xml
-  - mvn jacoco:prepare-agent test jacoco:report
-  - mvn -X com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=build/reports/jacoco/jacocoTestReport.xml -DprojectToken=$projectToken -DapiToken=$apiToken
+    override: 
+    	- maven clean
+    	- mvn integration-test
+        - mvn jacoco:report
+        - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$projectToken -DapiToken=$apiToken
 general:
- branches:
-  only:
-   - master
- artifacts:
-  - "build/reports/jacoco"
+    branches:
+        only:
+            - master
 dependencies:
  override:
   - curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
